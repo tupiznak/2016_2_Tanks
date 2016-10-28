@@ -6,7 +6,7 @@
   "main": "public/main.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint **/*.js",
-    "build:prod": "cp /home/travis/build/tupiznak/2016_2_Tanks/config.addressHostProd.js /home/travis/build/tupiznak/2016_2_Tanks/config.addressHost.js"
+    "build:prod": "cp ./config.addressHostProd.js ./config.addressHost.js"
   },
   "repository": {
     "type": "git",
