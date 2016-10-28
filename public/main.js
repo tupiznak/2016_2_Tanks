@@ -16,47 +16,20 @@
         const SignUpView = window.SignUpView;
         const LoginView = window.LoginView;
         const MainView = window.MainView;
-        /*
-         let allPages = document.querySelector('.js-allforms');
-         startInit(allPages);
 
-         detectSession(user, allPages);*/
-
-        //(new Router)
         window.user = detectSession();
-        (new Router)
-            .addRoute('/start', StartView)
+        let router = new Router();
+
+        router
             .addRoute('/login', LoginView)
             .addRoute('/signup', SignUpView)
             .addRoute('/signin', SignInView)
             .addRoute('/', MainView)
             .start();
 
-        /*
-         allPages.formLogin.on('submit', event => {
-         event.preventDefault();
-
-         initLogin(user, allPages);
-
-         });
-
-         allPages.formSignin.on('submit', event => {
-         event.preventDefault();
-
-         initSignin(user, allPages);
-         });
-
-         allPages.formLogout.on('submit', event=> {
-         event.preventDefault();
-
-         initLogout(user, allPages);
-         });
-
-         allPages.formDelUser.on('submit', event=> {
-         event.preventDefault();
-
-         initDelUser(user, allPages);
-         });*/
+        if(window.user.online){
+            router.go('/login')
+        }
     }
 })();
 

@@ -83,11 +83,8 @@
 		}
 
 		resume(options = {}) {
-			if(window.user.online)
-				this.router.go('/login');
-			else {
-				this.show();
-			}
+			this.show();
+			// this.router.go('/login');
 		}
 	}
 

@@ -66,15 +66,9 @@
 			this.show();
 		}
 		resume(options = {}) {
-			if(window.user.online)
-				this.router.go('/login');
-			else {
-				this.show();
-			}
+			this.show();
 		}
-
 	}
-
 
 	// export
 	window.StartView = StartView;

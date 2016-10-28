@@ -12,7 +12,7 @@ module.exports = {
 	paths: {
 		'/session': require('./resources/session'),
 		'/user': require('./resources/user'),
-		'/battle': require('./resources/battle')
+		'/battles/{user-id}': require('./resources/battle')
 	},
 
 	definitions: {
