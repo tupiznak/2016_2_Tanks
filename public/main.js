@@ -6,12 +6,11 @@
         let user = {};
         window.user = user;
 
-        let addressHost = "http://javaprodaction.herokuapp.com/";
-        //let addressHost = "http://localhost:8080/";
-        window.addressHost = addressHost;
+        //let addressHost = "http://javaprodaction.herokuapp.com/";
+//        let addressHost = "http://localhost:8080/";
+//        window.addressHost = addressHost;
 
         const Router = window.Router;
-        const StartView = window.StartView;
         const SignInView = window.SignInView;
         const SignUpView = window.SignUpView;
         const LoginView = window.LoginView;
