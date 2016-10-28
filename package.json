@@ -6,7 +6,7 @@
   "main": "public/main.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint **/*.js",
-    "build:prod": "cp ./public/config.addressHostProd.js ./public/config.addressHost.js && echo ok"
+    "build:prod": "echo ok;"
   },
   "repository": {
     "type": "git",
