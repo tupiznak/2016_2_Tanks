@@ -11,6 +11,8 @@
 //        window.addressHost = addressHost;
 
         const Router = window.Router;
+        const PlayView = window.PlayView;
+        const LeaderView = window.LeaderView;
         const SignInView = window.SignInView;
         const SignUpView = window.SignUpView;
         const LoginView = window.LoginView;
@@ -20,13 +22,17 @@
         let router = new Router();
 
         router
+            .addRoute('/play', PlayView)
+            .addRoute('/leaderboard', LeaderView)
             .addRoute('/login', LoginView)
             .addRoute('/signup', SignUpView)
             .addRoute('/signin', SignInView)
             .addRoute('/', MainView)
             .start();
 
-        if(window.user.online){
+        if(window.user.online
+             &&(window.location.pathname)!==('/leaderboard/')
+        ){
             router.go('/login')
         }
     }

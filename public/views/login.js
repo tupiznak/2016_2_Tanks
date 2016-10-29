@@ -31,6 +31,10 @@
                     type: 'click'
                 }
             });
+            playButton.on('click', event => {
+                event.preventDefault();
+                this.router.go('/play');
+            });
             loginPage.appendChild(playButton._get());
 ////
 
@@ -50,6 +54,10 @@
                 attrs: {
                     type: 'click'
                 }
+            });
+            leaderBoardButton.on('click', event => {
+                event.preventDefault();
+                this.router.go('/leaderboard');
             });
             loginPage.appendChild(leaderBoardButton._get());
 ////

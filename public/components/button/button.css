@@ -1,7 +1,7 @@
 .button {
 	/*background-color: transparent;*/
     border-radius: 100rem/25rem;
-    color: #C9B689;
+    color: #1f2120;
     cursor: pointer;
     display: block;
     font-weight: 700;
@@ -15,8 +15,8 @@
     margin: 2rem auto;
 
     background: url("../../images/button.png");
-    width: auto;
-    height: auto;
+    width: 20rem;
+    height: 6rem;
     background-size: 100% 100%;
     border: none;
     opacity: 0.7;

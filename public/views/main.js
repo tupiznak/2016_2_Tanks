@@ -57,8 +57,9 @@
 				this.router.go('/signup');
 			});
 			startPage.appendChild(signUpButton._el);
+////
 		}
-//
+
 
 		init(options = {}) {
 			this.show();
