@@ -16,6 +16,11 @@
 
 			this.hide();
 
+			let el = document.createElement('text');
+			el.innerHTML='Warning!!!';
+			el.hidden=true;
+			startPage.appendChild(el);
+
 //playButton
 			let playButton = new Button({
 				className: 'play_button',
@@ -26,7 +31,7 @@
 			});
 			playButton.on('click', event => {
 				event.preventDefault();
-				//Warning
+				el.hidden=false;
 			});
 			startPage.appendChild(playButton._el);
 ////

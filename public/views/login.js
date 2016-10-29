@@ -74,7 +74,7 @@
                 let isGoodLogaut = initLogout();
                 if (isGoodLogaut) {
                     window.user.online = false;
-                    alert(`by, ${window.user.login}`);
+                    alert(`bye, ${window.user.login}`);
                     this.router.go('/');
                 }
             });
