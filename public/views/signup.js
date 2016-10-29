@@ -7,17 +7,16 @@
 	class SignUpView extends View {
 		constructor(options = {}) {
 			super(options);
-			let allPages = document.querySelector('.js-allforms');
-
 			let signUpPage = document.createElement('div');
 			signUpPage.classList.add('js-signup');
+			this._el = signUpPage;
 
+			let allPages = document.querySelector('.js-allforms');
 			allPages.appendChild(signUpPage);
 
-			this._el = document.querySelector('.js-allforms').querySelector(".js-signup");
 			this.hide();
 
-
+//signUpForm
 			let signUpForm = new Form({
 				el: document.createElement('div'),
 				data: {
@@ -26,17 +25,21 @@
 						{
 							name: 'login',
 							type: 'text',
-							attrs: 'autofocus placeholder="Login" required '
+							autofocus: true,
+							placeholder: 'Login',
+							required: true
 						},
 						{
 							name: 'email',
 							type: 'email',
-							attrs: 'placeholder="E-mail" required '
+							placeholder: 'E-mail',
+							required: true
 						},
 						{
 							name: 'password',
 							type: 'password',
-							attrs: 'placeholder="Password" required '
+							placeholder: 'Password',
+							required: true
 						}
 					],
 					controls: [
@@ -49,24 +52,6 @@
 					]
 				}
 			});
-
-			signUpPage.appendChild(signUpForm.el);
-
-			allPages.signUpForm = signUpForm;
-			allPages.signUpPage = signUpPage;
-
-			let backButton = new Button({
-				text: 'back',
-				attrs: {
-					type: 'click'
-				}
-			}).render();
-			backButton.on('click', event => {
-				event.preventDefault();
-				this.router.back();
-			});
-			signUpPage.appendChild(backButton.el);
-
 			signUpForm.on('submit', event => {
 				event.preventDefault();
 
@@ -79,6 +64,22 @@
 					alert("this login is zanet");
 				}
 			});
+			signUpPage.appendChild(signUpForm._get());
+////
+
+//backButton
+			let backButton = new Button({
+				text: 'back',
+				attrs: {
+					type: 'click'
+				}
+			});
+			backButton.on('click', event => {
+				event.preventDefault();
+				this.router.back();
+			});
+			this._el.appendChild(backButton._el);
+////
 		}
 
 		init(options = {}) {

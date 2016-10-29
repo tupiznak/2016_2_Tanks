@@ -1,116 +1,97 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	const View = window.View;
-	const Form = window.Form;
+    const View = window.View;
+    const Form = window.Form;
 
-	class LoginView extends View {
-		constructor(options = {}) {
-			super(options);
-			let allPages = document.querySelector('.js-allforms');
+    class LoginView extends View {
+        constructor(options = {}) {
+            super(options);
+            let loginPage = document.createElement('div');
+            loginPage.classList.add('js-login');
+            this._el = loginPage;
 
-			let LoginPage = document.createElement('div');
-			LoginPage.classList.add('js-login');
+            let allPages = document.querySelector('.js-allforms');
+            allPages.appendChild(loginPage);
 
-			allPages.appendChild(LoginPage);
+            this.hide();
 
-			this._el = document.querySelector('.js-allforms').querySelector(".js-login");
-			this.hide();
+//loginForm
+            let loginForm = new Form({
+                el: document.createElement('div'),
+                data: {}
+            });
+            loginPage.appendChild(loginForm._get());
 
-			let LoginForm = new Form({
-				el: document.createElement('div'),
-				data: {}
-			});
-
+//playButton
             let playButton = new Button({
                 className: 'play_button',
                 text: 'play',
                 attrs: {
                     type: 'click'
                 }
-            }).render();
+            });
+            loginPage.appendChild(playButton._get());
+////
 
+//playWithFreindsButton
             let playWithFreindsButton = new Button({
                 text: 'party',
                 attrs: {
                     type: 'click'
                 }
-            }).render();
+            });
+            loginPage.appendChild(playWithFreindsButton._get());
+////
 
+//leaderBoardButton
             let leaderBoardButton = new Button({
                 text: 'leaders',
                 attrs: {
                     type: 'click'
                 }
-            }).render();
+            });
+            loginPage.appendChild(leaderBoardButton._get());
+////
 
+//logOutButton
             let logOutButton = new Button({
                 text: 'logout',
                 attrs: {
                     type: 'click'
                 }
-            }).render();
-
-            let deleteButton = new Button({
-                text: 'delete',
-                attrs: {
-                    type: 'click'
-                }
-            }).render();
-
-            LoginPage.appendChild(LoginForm.el);
-            LoginPage.appendChild(playButton.el);
-            LoginPage.appendChild(playWithFreindsButton.el);
-            LoginPage.appendChild(leaderBoardButton.el);
-            LoginPage.appendChild(logOutButton.el);
-            LoginPage.appendChild(deleteButton.el);
-
-            allPages.deleteButton = deleteButton;
-            allPages.logOutButton = logOutButton;
-            allPages.leaderBoardButton = leaderBoardButton;
-            allPages.playWithFreindsButton = playWithFreindsButton;
-            allPages.playButton = playButton;
-			allPages.LoginForm = LoginForm;
-			allPages.LoginPage = LoginPage;
-
+            });
             logOutButton.on('click', event => {
                 event.preventDefault();
                 let isGoodLogaut = initLogout();
-                if (isGoodLogaut){
+                if (isGoodLogaut) {
                     window.user.online = false;
                     alert(`by, ${window.user.login}`);
                     this.router.go('/');
                 }
             });
+            loginPage.appendChild(logOutButton._get());
+////
+            loginPage.loginForm = loginForm;
+        }
 
-            deleteButton.on('click', event => {
-                event.preventDefault();
-                let isGoodDelete = initDelUser();
-                if (isGoodDelete){
-                    window.user.online = false;
-                    alert(`by, ${window.user.login}, you are deleted`);
-                    this.router.go('/');
-                }
-            });
-		}
-
-		resume(options = {}) {
+        resume(options = {}) {
             if (!window.user.online) {
                 this.router.go('/');
             }
-			else {
-                document.querySelector('.js-allforms').LoginForm.reFill({
-                    data:{
+            else {
+                this._el.loginForm.reFill({
+                    data: {
                         title: `Hi, ${window.user.login} your email ${window.user.email}`
                     }
-                    });
+                });
                 this.show();
             }
-		}
-	}
+        }
+    }
 
 
-	// export
-	window.LoginView = LoginView;
+    // export
+    window.LoginView = LoginView;
 
 })();

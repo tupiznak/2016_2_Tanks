@@ -1,13 +1,21 @@
 (function () {
 	'use strict';
 
-	class Button {
+	const Block = window.Block;
+
+	class Button  extends Block {
 		constructor (options={className:"",text:""}) {
+			super('button', options);
+			this._el.classList.add('button');
+			this._el.innerText = this._options.text || 'Press me';
+/*
 			this.className = options.className;
 			this.text = options.text;
 			this.attrs = options.attrs || [];
 			this.el = document.createElement('button');
+*/
 		}
+/*
 
 		setAttrs (attrs) {
 			Object.keys(attrs).forEach(name => {
@@ -33,6 +41,7 @@
 		toString () {
 			return this.el.outerHTML;
 		}
+*/
 	}
 
 	//export

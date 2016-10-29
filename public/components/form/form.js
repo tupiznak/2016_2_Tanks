@@ -1,22 +1,23 @@
 (function () {
     'use strict';
 
-    // import
+    const Block = window.Block;
     let Button = window.Button;
 
-    class Form {
+    class Form extends Block{
         constructor(options = {data: {}}) {
+            super('form');
+            this.template = window.fest['form/form.tmpl'];
             this.data = options.data;
-            this.el = options.el;
-
+            this._el = options.el;
             this.render();
         }
 
         render() {
             this._updateHtml();
-            this._updateDataHtml();
+            // this._updateDataHtml();
             this._installControls();
-            this.el.classList.add('form');
+            this._el.classList.add('form');
         }
 
         reFill(options = {data: {}}) {
@@ -25,22 +26,13 @@
             this._updateDataHtml();
         }
 
-        _getFields() {
-            let {fields = []} = this.data;
-
-            return fields.map(field => {
-                (field.text == null) ? field.text = "" : true;
-                if (!field.name || !field.type || !field.attrs)
-                    return `<h4>${field.text}</h4>`;
-
-                (field.attrs == null) ? field.attrs = "" : true;
-                (field.type == null) ? field.type = "" : true;
-                (field.name == null) ? field.name = "" : true;
-                return `<input type="${field.type}" name="${field.name}" ${field.attrs}>${field.text}`
-            }).join(' ')
+        reset() {
+            this._el.querySelector('form').reset();
         }
 
         _updateHtml() {
+            this._el.innerHTML = this.template(this.data);
+/*
             this.el.innerHTML = `
 				<form>
                     <div class="js-data">
@@ -49,43 +41,32 @@
 				    </div>
 				<form>
 			`;
+*/
         }
 
         _updateDataHtml() {
+            this._el.innerHTML = this.template(this.data);
+/*
             this.el.querySelector('.js-data').innerHTML = `
 					<h1>${this.data.title}</h1>
 					<div>
 						${this._getFields()}
 					</div>
 			`;
+*/
         }
 
         _installControls() {
             let {controls = []} = this.data;
 
             controls.forEach(data => {
-                let control = new Button({text: data.text, className: data.className}).render();
-                this.el.querySelector('.js-controls').appendChild(control.el);
+                let control = new Button({text: data.text, className: data.className});
+                this._el.querySelector('.js-controls').appendChild(control._get());
             });
         }
 
-        on(type, callback) {
-            this.el.addEventListener(type, callback, false);
-            /*
-            //this.el.querySelector('button').addEventListener(type, callback, false);
-            let buttons = this.el.querySelectorAll('button');
-            console.log(buttons)
-            for (let i = 0; i < buttons.length; i++) {
-                let elem = buttons[i];
-                elem.addEventListener(type, callback)
-                console.log(elem.classList[0]);
-            }
-*/
-        }
-
-
         getFormData() {
-            let form = this.el.querySelector('form');
+            let form = this._el.querySelector('form');
             let elements = form.elements;
             let fields = {};
 

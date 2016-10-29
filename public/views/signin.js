@@ -7,17 +7,16 @@
 	class SignInView extends View {
 		constructor(options = {}) {
 			super(options);
-			let allPages = document.querySelector('.js-allforms');
-
 			let signInPage = document.createElement('div');
 			signInPage.classList.add('js-signin');
+			this._el = signInPage;
 
+			let allPages = document.querySelector('.js-allforms');
 			allPages.appendChild(signInPage);
 
-			this._el = document.querySelector('.js-allforms').querySelector(".js-signin");
 			this.hide();
 
-
+//signInForm
 			let signInForm = new Form({
 				el: document.createElement('div'),
 				data: {
@@ -26,12 +25,15 @@
 						{
 							name: 'login',
 							type: 'text',
-							attrs: 'autofocus placeholder="Login" required '
+							autofocus: true,
+							placeholder: 'Login',
+							required: true
 						},
 						{
 							name: 'password',
 							type: 'password',
-							attrs: 'placeholder="Password" required '
+							placeholder: 'Password',
+							required: true
 						}
 					],
 					controls: [
@@ -44,24 +46,6 @@
 					]
 				}
 			});
-
-			signInPage.appendChild(signInForm.el);
-
-			allPages.signInForm = signInForm;
-			allPages.signInPage = signInPage;
-
-			let backButton = new Button({
-				text: 'back',
-				attrs: {
-					type: 'click'
-				}
-			}).render();
-			backButton.on('click', event => {
-				event.preventDefault();
-				this.router.back();
-			});
-			signInPage.appendChild(backButton.el);
-
 			signInForm.on('submit', event => {
 				event.preventDefault();
 
@@ -74,9 +58,23 @@
 					alert("this wrong password");
 				}
 			});
+			signInPage.appendChild(signInForm._get());
+////
 
+//backButton
+			let backButton = new Button({
+				text: 'back',
+				attrs: {
+					type: 'click'
+				}
+			});
+			backButton.on('click', event => {
+				event.preventDefault();
+				this.router.back();
+			});
+			this._el.appendChild(backButton._el);
+////
 		}
-
 
 		init(options = {}) {
 			this.show();
@@ -84,10 +82,8 @@
 
 		resume(options = {}) {
 			this.show();
-			// this.router.go('/login');
 		}
 	}
-
 
 	// export
 	window.SignInView = SignInView;
