@@ -20,7 +20,7 @@
 			let signInForm = new Form({
 				el: document.createElement('div'),
 				data: {
-					title: 'Hi! Please signin',
+					// title: 'Hi! Please signin',
 					fields: [
 						{
 							name: 'login',
@@ -72,7 +72,7 @@
 				event.preventDefault();
 				this.router.back();
 			});
-			this._el.appendChild(backButton._el);
+			this._el.appendChild(backButton._get());
 ////
 		}
 
@@ -85,7 +85,5 @@
 		}
 	}
 
-	// export
 	window.SignInView = SignInView;
-
 })();

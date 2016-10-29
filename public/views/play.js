@@ -16,16 +16,6 @@
 
             this.hide();
 
-
-            let image1 = new Image(screen.width, screen.height-150);
-            image1.src = '../images/back_play1.jpg';
-            image1.className='presentplay1';
-            document.body.appendChild(image1);
-            let image2 = new Image(screen.width, screen.height-150);
-            image2.src = '../images/back_play2.jpg';
-            image2.className='presentplay2';
-            document.body.appendChild(image2);
-
 //backButton
             let backButton = new Button({
                 text: 'back',
@@ -41,13 +31,6 @@
 ////
         }
 
-
-        pause(options = {}) {
-            document.querySelector('.presentplay1').hidden=true;
-            document.querySelector('.presentplay2').hidden=true;
-            document.querySelector('.logo').hidden=false;
-            this.hide();
-        }
         init(options = {}) {
             this.show();
         }
@@ -57,9 +40,6 @@
                 this.router.go('/');
             }
             else {
-                document.querySelector('.logo').hidden=true;
-                document.querySelector('.presentplay1').hidden=false;
-                document.querySelector('.presentplay2').hidden=false;
                 this.show();
             }
         }

@@ -20,7 +20,7 @@
 			let signUpForm = new Form({
 				el: document.createElement('div'),
 				data: {
-					title: 'Hi! Please signup',
+					// title: 'Hi! Please signup',
 					fields: [
 						{
 							name: 'login',

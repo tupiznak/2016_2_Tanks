@@ -16,12 +16,6 @@
 
             this.hide();
 
-
-            let image = new Image(screen.width, screen.height-150);
-            image.src = '../images/back_leaderboard.jpg';
-            image.className='present';
-            document.body.appendChild(image);
-
 //backButton
             let backButton = new Button({
                 text: 'back',
@@ -33,16 +27,10 @@
                 event.preventDefault();
                 this.router.back();
             });
-            this._el.appendChild(backButton._el);
+            this._el.appendChild(backButton._get());
 ////
         }
 
-
-        pause(options = {}) {
-            document.querySelector('.present').hidden=true;
-            document.querySelector('.logo').hidden=false;
-            this.hide();
-        }
         init(options = {}) {
             this.show();
         }
@@ -52,15 +40,11 @@
                 this.router.go('/');
             }
             else {
-                document.querySelector('.logo').hidden=true;
-                document.querySelector('.present').hidden=false;
                 this.show();
             }
         }
     }
 
-
-    // export
     window.LeaderView = LeaderView;
 
 })();

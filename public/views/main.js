@@ -33,7 +33,7 @@
 				event.preventDefault();
 				el.hidden=false;
 			});
-			startPage.appendChild(playButton._el);
+			startPage.appendChild(playButton._get());
 ////
 
 //signInButton
@@ -47,7 +47,7 @@
 				event.preventDefault();
 				this.router.go('/signin');
 			});
-			startPage.appendChild(signInButton._el);
+			startPage.appendChild(signInButton._get());
 ////
 
 //signUpButton
@@ -61,10 +61,9 @@
 				event.preventDefault();
 				this.router.go('/signup');
 			});
-			startPage.appendChild(signUpButton._el);
+			startPage.appendChild(signUpButton._get());
 ////
 		}
-
 
 		init(options = {}) {
 			this.show();
@@ -74,8 +73,5 @@
 		}
 	}
 
-
-	// export
 	window.MainView = MainView;
-
 })();
