@@ -1,34 +1,57 @@
 (function () {
-    //import
     const Model = window.Model;
 
-    class Message extends Model {
+    class User extends Model {
 
         constructor(attributes) {
             super(attributes);
+
+            this.attributes['id'] = -1;
         }
 
-        url(id) {
-            if (id) {
-                return `${this.baseUrl}/messages/${id}.json`;
-            }
-            return `${this.baseUrl}/messages.json`;
+        get userUrl() {
+            return `${this.baseUrl}/user`;
+        }
+
+        get sessionUrl(){
+            return `${this.baseUrl}/session`;
         }
 
         get defaults() {
             return {
-                name: 'Default name',
+                login: 'anon',
                 email: 'anon@mail.ru',
-                timestamp: this.time
+                password: '123',
+                id: -1
             }
         }
 
-        get time() {
-            return Date.now();
+        signin(){
+            let request = {
+                login: this.attributes['login'],
+                password: this.attributes['password']
+            };
+            return this.send('POST', this.sessionUrl, request)
         }
+
+        logout(){
+            return this.send('DELETE', this.sessionUrl, {})
+        }
+
+        signup() {
+            let request = {
+                login: this.attributes['login'],
+                email: this.attributes['email'],
+                password: this.attributes['password']
+            };
+            return this.send('POST', this.userUrl, request);
+        }
+
+        detectSession(){
+            return this.send('GET', this.sessionUrl, {});
+        }
+
     }
 
-    //export
-    window.Message = Message;
-
+    window.User = User;
 })();

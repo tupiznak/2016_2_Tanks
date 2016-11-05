@@ -8,7 +8,7 @@
                 if (attributes[key] === undefined) {
                     delete attributes[key];
                 }
-            })
+            });
             this.attributes = Object.assign({}, this.defaults, attributes);
         }
 
@@ -16,38 +16,41 @@
             return {};
         }
 
-        get url() {
-            return window.addressHost;
+        get baseUrl() {
+            return `${window.addressHost}/api`;
         }
 
-        send(method, data = {}) {
+        send(method, url,  data = {}) {
             return new Promise((resolve, reject) => {
+                let TIME_OUT = 5000;
+
+                let message = createLoadingMessage(document.querySelector('.js-allforms'), 'Loading...');
+
                 let xhr = new XMLHttpRequest();
-                xhr.open(method, this.url, true);
+                xhr.open(method, url, false);
                 xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.withCredentials = true;
+
+                xhr.ontimeout = function (e) {
+                    alert("sorry, server sleep");
+                };
 
                 xhr.onreadystatechange = function () {
+                    document.body.appendChild(message);
                     if (xhr.readyState === 4) {
-                        resolve(xhr.responseText);
+                        document.body.removeChild(message);
+                        resolve(xhr);
                     }
-                }
+                };
 
                 xhr.onerror = function () {
                     reject();
-                }
+                };
 
                 xhr.send(JSON.stringify(data));
             });
         }
-
-        save() {
-            let method = this.attributes.id ? 'PUT' : 'POST';
-
-            return this.send(method, this.attributes);
-        }
-
     }
 
-    // export
     window.Model = Model;
 })();

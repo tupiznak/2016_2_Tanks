@@ -3,34 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>SteamTank</title>
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+        <!--<link rel="shortcut icon" href="/images/favicon.png" type="image/png">-->
         <link href="/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="/css/style.css" />
 
         <link rel="stylesheet" href="/components/button/button.css" />
         <link rel="stylesheet" href="/components/form/form.css" />
+
+        <link rel="stylesheet" href="/views/main.css" />
+        <link rel="stylesheet" href="/views/signup.css" />
+        <link rel="stylesheet" href="/views/login.css" />
     </head>
     <body>
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                <div class="cover-container">
-                    <div class="inner cover">
-                        <img class="logo" src="/images/logo.gif" width="16%" height="22%" style="position: fixed; top: 7%; left: 42%;">
-                        <div class="js-allforms" style="margin-top: 22%"></div>
-                    </div>
-                    <div class="mastfoot">
-                        <div class="inner">
-                            <p>Game by <a href="https://github.com/tupiznak">tupiznak</a>. Design by el_designo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!--<img class="logo" src="/images/logo.gif" width="16%" height="22%" style="position: fixed; top: 7%; left: 42%;">-->
+    <div class="js-allforms" ></div>
+    <p>Game by <a href="https://github.com/tupiznak">tupiznak</a>. Design by el_designo.</p>
+
         <script src="/modules/pathToRegex.js"></script>
         <script src="/modules/view.js"></script>
         <script src="/modules/route.js"></script>
         <script src="/modules/router.js"></script>
+
+        <script src="/config.addressHost.js"></script>
+
+        <script src="/models/baseModel.js"></script>
+        <script src="/models/user.js"></script>
 
         <script src="/components/block/block.js"></script>
         <script src="/components/button/button.tmpl.js"></script>
@@ -40,7 +38,6 @@
 
         <script src="components/logic/filling.js"></script>
 
-        <script src="/config.addressHost.js"></script>
         <script src="/views/main.js"></script>
         <script src="/views/signin.js"></script>
         <script src="/views/signup.js"></script>

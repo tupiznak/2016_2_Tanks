@@ -51,14 +51,33 @@
 			signInForm.on('submit', event => {
 				event.preventDefault();
 
-				let isGoodSingIn = initSignin(signInForm.getFormData());
+				let user = window.user;
+				user.attributes['login']=signInForm.getFormData()['login'];
+				user.attributes['password']=signInForm.getFormData()['password'];
+				user.signin().then(
+					result=> {
+						if (result.status === 200) {
+							let responseDataFields = JSON.parse(result.response);
+							user.attributes['email'] = responseDataFields['email'];
+							user.attributes['id'] = 1;//TODO need id in cookie
+							this.router.go('/login');
+						}
+						else
+							alert("this wrong password");
+					},
+					error=> {
+						alert("WTF??!!");
+					}
+				);
+
+				/*let isGoodSingIn = initSignin(signInForm.getFormData());
 				if(isGoodSingIn){
 					window.user.online = true;
 					this.router.go('/login');
 				}
 				else {
 					alert("this wrong password");
-				}
+				}*/
 			});
 			this._el.appendChild(signInForm._get());
 ////

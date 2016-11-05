@@ -35,7 +35,7 @@
         }
 
         resume(options = {}) {
-            if (!window.user.online) {
+            if (!window.user.attributes['id'] === -1) {
                 this.router.go('/');
             }
             else {
@@ -44,8 +44,6 @@
         }
     }
 
-
-    // export
     window.PlayView = PlayView;
 
 })();

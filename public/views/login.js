@@ -73,12 +73,23 @@
             });
             logOutButton.on('click', event => {
                 event.preventDefault();
-                let isGoodLogaut = initLogout();
-                if (isGoodLogaut) {
-                    window.user.online = false;
-                    alert(`bye, ${window.user.login}`);
-                    this.router.go('/');
-                }
+
+                let user = window.user;
+                user.logout().then(
+                    result=> {
+                        if (result.status === 200) {
+                            let responseDataFields = JSON.parse(result.response);
+                            alert(`bye, ${window.user.attributes['login']}`);
+                            user.attributes['id'] = -1;//TODO id
+                            this.router.go('/');
+                        }
+                        else
+                            alert("WTF??!!");
+                    },
+                    error=> {
+                        alert("WTF??!!");
+                    }
+                );
             });
             this._el.appendChild(logOutButton._get());
 ////
@@ -88,13 +99,13 @@
         }
         resume(options = {}) {
             //TODO need to kill back
-            if (!window.user.online) {
+            if (window.user.attributes['id']===-1) {//TODO id
                 this.router.go('/');
             }
             else {
                 this._el.loginForm.reFill({
                     data: {
-                        title: `Hi, ${window.user.login} your email ${window.user.email}`
+                        title: `Hi, ${window.user.attributes['login']} your email ${window.user.attributes['email']}`
                     }
                 });
                 this.show();
