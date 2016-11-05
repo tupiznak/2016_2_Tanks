@@ -15,7 +15,9 @@
 			allPages.appendChild(signUpPage);
 
 			this.hide();
+		}
 
+		init(options = {}) {
 //signUpForm
 			let signUpForm = new Form({
 				el: document.createElement('div'),
@@ -44,8 +46,8 @@
 					],
 					controls: [
 						{
-							text: 'Sign Up',
-							attrs: {
+							data: {
+								text: 'sign up',
 								type: 'submit'
 							}
 						}
@@ -64,13 +66,13 @@
 					alert("this login is zanet");
 				}
 			});
-			signUpPage.appendChild(signUpForm._get());
+			this._el.appendChild(signUpForm._get());
 ////
 
 //backButton
 			let backButton = new Button({
-				text: 'back',
-				attrs: {
+				data: {
+					text: 'back',
 					type: 'click'
 				}
 			});
@@ -80,9 +82,6 @@
 			});
 			this._el.appendChild(backButton._el);
 ////
-		}
-
-		init(options = {}) {
 			this.show();
 		}
 

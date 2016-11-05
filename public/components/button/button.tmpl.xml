@@ -1,7 +1,5 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
-    <fest:for iterate="data.fields" index="i" value="field">
-        <button type="click" class="field ">
-            <fest:value>data.title</fest:value>
-        </button>
-    </fest:for>
+    <button type="{data.type}" class="button {data.class}">
+        <fest:value>data.text</fest:value>
+    </button>
 </fest:template>

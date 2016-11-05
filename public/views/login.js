@@ -15,19 +15,21 @@
             allPages.appendChild(loginPage);
 
             this.hide();
+       }
 
-//loginForm
+        init(){
+            //loginForm
             let loginForm = new Form({
                 el: document.createElement('div'),
                 data: {}
             });
-            loginPage.appendChild(loginForm._get());
+            this._el.appendChild(loginForm._get());
 
 //playButton
             let playButton = new Button({
-                className: 'play_button',
-                text: 'play',
-                attrs: {
+                data: {
+                    className: 'play_button',
+                    text: 'play',
                     type: 'click'
                 }
             });
@@ -35,23 +37,23 @@
                 event.preventDefault();
                 this.router.go('/play');
             });
-            loginPage.appendChild(playButton._get());
+            this._el.appendChild(playButton._get());
 ////
 
 //playWithFreindsButton
             let playWithFreindsButton = new Button({
-                text: 'party',
-                attrs: {
+                data: {
+                    text: 'party',
                     type: 'click'
                 }
             });
-            loginPage.appendChild(playWithFreindsButton._get());
+            this._el.appendChild(playWithFreindsButton._get());
 ////
 
 //leaderBoardButton
             let leaderBoardButton = new Button({
-                text: 'leaders',
-                attrs: {
+                data: {
+                    text: 'leaders',
                     type: 'click'
                 }
             });
@@ -59,13 +61,13 @@
                 event.preventDefault();
                 this.router.go('/leaderboard');
             });
-            loginPage.appendChild(leaderBoardButton._get());
+            this._el.appendChild(leaderBoardButton._get());
 ////
 
 //logOutButton
             let logOutButton = new Button({
-                text: 'logout',
-                attrs: {
+                data: {
+                    text: 'logout',
                     type: 'click'
                 }
             });
@@ -78,12 +80,14 @@
                     this.router.go('/');
                 }
             });
-            loginPage.appendChild(logOutButton._get());
+            this._el.appendChild(logOutButton._get());
 ////
-            loginPage.loginForm = loginForm;
-        }
+            this._el.loginForm = loginForm;
 
+            this.show();
+        }
         resume(options = {}) {
+            //TODO need to kill back
             if (!window.user.online) {
                 this.router.go('/');
             }

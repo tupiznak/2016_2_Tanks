@@ -6,7 +6,7 @@
 
     class Form extends Block{
         constructor(options = {data: {}}) {
-            super('form');
+            super('form',options);
             this.template = window.fest['form/form.tmpl'];
             this.data = options.data;
             this._el = options.el;
@@ -14,8 +14,7 @@
         }
 
         render() {
-            this._updateHtml();
-            // this._updateDataHtml();
+            this._updateDataHtml();
             this._installControls();
             this._el.classList.add('form');
         }
@@ -30,37 +29,16 @@
             this._el.querySelector('form').reset();
         }
 
-        _updateHtml() {
-            this._el.innerHTML = this.template(this.data);
-/*
-            this.el.innerHTML = `
-				<form>
-                    <div class="js-data">
-				    </div>
-				    <div class="js-controls">
-				    </div>
-				<form>
-			`;
-*/
-        }
-
         _updateDataHtml() {
             this._el.innerHTML = this.template(this.data);
-/*
-            this.el.querySelector('.js-data').innerHTML = `
-					<h1>${this.data.title}</h1>
-					<div>
-						${this._getFields()}
-					</div>
-			`;
-*/
+
         }
 
         _installControls() {
             let {controls = []} = this.data;
 
-            controls.forEach(data => {
-                let control = new Button({text: data.text, className: data.className});
+            controls.forEach(elem => {
+                let control = new Button({data: elem.data});
                 this._el.querySelector('.js-controls').appendChild(control._get());
             });
         }
@@ -82,10 +60,6 @@
             });
 
             return fields;
-        }
-
-        getFormTitle() {
-            return this.el.querySelector('form').title;
         }
 
     }

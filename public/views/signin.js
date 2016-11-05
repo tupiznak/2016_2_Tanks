@@ -15,7 +15,9 @@
 			allPages.appendChild(signInPage);
 
 			this.hide();
+		}
 
+		init(options = {}) {
 //signInForm
 			let signInForm = new Form({
 				el: document.createElement('div'),
@@ -38,8 +40,8 @@
 					],
 					controls: [
 						{
-							text: 'Sign In',
-							attrs: {
+							data: {
+								text: 'sign in',
 								type: 'submit'
 							}
 						}
@@ -58,13 +60,13 @@
 					alert("this wrong password");
 				}
 			});
-			signInPage.appendChild(signInForm._get());
+			this._el.appendChild(signInForm._get());
 ////
 
 //backButton
 			let backButton = new Button({
-				text: 'back',
-				attrs: {
+				data: {
+					text: 'back',
 					type: 'click'
 				}
 			});
@@ -74,9 +76,6 @@
 			});
 			this._el.appendChild(backButton._get());
 ////
-		}
-
-		init(options = {}) {
 			this.show();
 		}
 

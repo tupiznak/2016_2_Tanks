@@ -15,11 +15,13 @@
             allPages.appendChild(playPage);
 
             this.hide();
+        }
 
+        init(options = {}) {
 //backButton
             let backButton = new Button({
-                text: 'back',
-                attrs: {
+                data: {
+                    text: 'back',
                     type: 'click'
                 }
             });
@@ -29,9 +31,6 @@
             });
             this._el.appendChild(backButton._el);
 ////
-        }
-
-        init(options = {}) {
             this.show();
         }
 

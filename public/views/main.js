@@ -1,77 +1,77 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	const View = window.View;
-	const Button = window.Button;
+    const View = window.View;
+    const Button = window.Button;
 
-	class MainView extends View {
-		constructor(options = {}) {
-			super(options);
-			let startPage = document.createElement('div');
-			startPage.classList.add('js-start');
-			this._el = startPage;
+    class MainView extends View {
+        constructor(options = {}) {
+            super(options);
+            let startPage = document.createElement('div');
+            startPage.classList.add('js-start');
+            this._el = startPage;
 
-			let allPages = document.querySelector('.js-allforms');
-			allPages.appendChild(startPage);
+            let allPages = document.querySelector('.js-allforms');
+            allPages.appendChild(startPage);
 
-			this.hide();
+            this.hide();
+        }
 
-			let el = document.createElement('text');
-			el.innerHTML='Warning!!!';
-			el.hidden=true;
-			startPage.appendChild(el);
+        init(options = {}) {
+            let el = document.createElement('text');
+            el.innerHTML = 'Warning!!!';
+            el.hidden = true;
+            this._el.appendChild(el);
 
 //playButton
-			let playButton = new Button({
-				className: 'play_button',
-				text: 'play',
-				attrs: {
-					type: 'click'
-				}
-			});
-			playButton.on('click', event => {
-				event.preventDefault();
-				el.hidden=false;
-			});
-			startPage.appendChild(playButton._get());
+            let playButton = new Button({
+                data: {
+                    class: 'play_button',
+                    text: 'play',
+                    type: 'click'
+                }
+            });
+            playButton.on('click', event => {
+                event.preventDefault();
+                el.hidden = false;
+            });
+            this._el.appendChild(playButton._get());
 ////
 
 //signInButton
-			let signInButton = new Button({
-				text: 'sign in',
-				attrs: {
-					type: 'click'
-				}
-			});
-			signInButton.on('click', event => {
-				event.preventDefault();
-				this.router.go('/signin');
-			});
-			startPage.appendChild(signInButton._get());
+            let signInButton = new Button({
+                data: {
+                    text: 'sign in',
+                    type: 'click'
+                }
+            });
+            signInButton.on('click', event => {
+                event.preventDefault();
+                this.router.go('/signin');
+            });
+            this._el.appendChild(signInButton._get());
 ////
 
 //signUpButton
-			let signUpButton = new Button({
-				text: 'sign up',
-				attrs: {
-					type: 'click'
-				}
-			});
-			signUpButton.on('click', event => {
-				event.preventDefault();
-				this.router.go('/signup');
-			});
-			startPage.appendChild(signUpButton._get());
+            let signUpButton = new Button({
+                data: {
+                    text: 'sign up',
+                    type: 'click'
+                }
+            });
+            signUpButton.on('click', event => {
+                event.preventDefault();
+                this.router.go('/signup');
+            });
+            this._el.appendChild(signUpButton._get());
 ////
-		}
+            this.show();
+        }
 
-		init(options = {}) {
-			this.show();
-		}
-		resume(options = {}) {
-			this.show();
-		}
-	}
+        resume(options = {}) {
+            this.show();
+        }
+    }
 
-	window.MainView = MainView;
+    window.MainView = MainView;
 })();
