@@ -98,6 +98,8 @@
             this.show();
         }
         resume(options = {}) {
+            document.querySelector('body').style.backgroundPosition = '-50px';
+
             //TODO need to kill back
             if (window.user.attributes['id']===-1) {//TODO id
                 this.router.go('/');

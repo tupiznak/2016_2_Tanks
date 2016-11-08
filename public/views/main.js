@@ -69,6 +69,7 @@
         }
 
         resume(options = {}) {
+            document.querySelector('body').style.backgroundPosition = '-10px';
             this.show();
         }
     }

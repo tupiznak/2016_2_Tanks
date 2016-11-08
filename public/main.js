@@ -34,6 +34,14 @@
             }
         );
 
+        var backgroundImage = new Image();
+        backgroundImage.src = '/images/back_main.jpg';
+
+        document.querySelector('body').style.backgroundImage=backgroundImage;
+        document.querySelector('body').style.backgroundImage="url('/images/back_main.jpg')";
+        document.querySelector('body').style.backgroundPosition = '-100px';
+        document.querySelector('body').style.transition = 'background-position 1s cubic-bezier(.32,.11,.86,1.18)';
+
         router
             .addRoute('/play', PlayView)
             .addRoute('/leaderboard', LeaderView)
