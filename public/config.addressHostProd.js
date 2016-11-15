@@ -1,5 +1,5 @@
 (function () {
     'use strict';
-    let addresshost = "http://javaprodaction.herokuapp.com/";
+    let addresshost = "javaprodaction.herokuapp.com/";
     window.addressHost = addresshost;
 })();

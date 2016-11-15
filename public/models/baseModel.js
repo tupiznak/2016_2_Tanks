@@ -17,7 +17,7 @@
         }
 
         get baseUrl() {
-            return `${window.addressHost}/api`;
+            return `${window.addressHost}api`;
         }
 
         send(method, url,  data = {}) {

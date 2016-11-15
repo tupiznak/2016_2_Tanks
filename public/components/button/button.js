@@ -2,7 +2,6 @@
 	'use strict';
 
 	const Block = window.Block;
-//TODO a lot of <><><><><><> in DOM
 	class Button  extends Block {
 		constructor (_options={data:""}) {
 			super('div', _options);
@@ -21,7 +20,6 @@
 		}
 	}
 
-	//export
 	window.Button = Button;
 
 })();

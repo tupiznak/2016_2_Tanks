@@ -33,7 +33,12 @@
             });
             playButton.on('click', event => {
                 event.preventDefault();
-                el.hidden = false;
+
+                event.target;
+                event.currentTarget;
+
+                el.hidden = false;//TODO Warning
+                this.router.go('/play');
             });
             this._el.appendChild(playButton._get());
 ////

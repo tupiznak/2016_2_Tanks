@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    //let addresshost = "http://javaprodaction.herokuapp.com/";
-    let addresshost = "http://localhost:8080/";
+    //let addresshost = "javaprodaction.herokuapp.com/";
+    let addresshost = "localhost:8080/";
     window.addressHost = addresshost;
 })();

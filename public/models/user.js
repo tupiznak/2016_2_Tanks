@@ -10,11 +10,11 @@
         }
 
         get userUrl() {
-            return `${this.baseUrl}/user`;
+            return `http://${this.baseUrl}/user`;
         }
 
         get sessionUrl(){
-            return `${this.baseUrl}/session`;
+            return `http://${this.baseUrl}/session`;
         }
 
         get defaults() {
