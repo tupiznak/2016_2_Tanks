@@ -24,7 +24,6 @@ app.get('/api/session', (req, res) => {
     res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
-
 app.listen(process.env.PORT || 3000, () => {
     console.log(`App started on port ${process.env.PORT || 3000}`);
 });

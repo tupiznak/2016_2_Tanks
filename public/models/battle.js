@@ -22,7 +22,7 @@
             this._socket = new WebSocket(this.url);
             return this._socket;
         }
-
+//медиатор
         logout(){
             this._socket.close();
             return this._socket;
